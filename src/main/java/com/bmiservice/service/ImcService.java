@@ -1,4 +1,4 @@
-package com.imc_RSB.imc_rest_springboot.Service;
+package com.bmiservice.service;
 
 import org.springframework.stereotype.Service;
 

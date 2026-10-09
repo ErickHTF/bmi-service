@@ -1,6 +1,6 @@
-package com.imc_RSB.imc_rest_springboot.Repo;
+package com.bmiservice.repository;
 
-import com.imc_RSB.imc_rest_springboot.Models.Users;
+import com.bmiservice.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsersRepo extends JpaRepository<Users, Long> {

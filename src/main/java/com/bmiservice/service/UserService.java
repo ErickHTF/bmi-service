@@ -1,11 +1,11 @@
-package com.imc_RSB.imc_rest_springboot.Service;
+package com.bmiservice.service;
 
-import com.imc_RSB.imc_rest_springboot.Exception.ResourceNotFoundException;
-import com.imc_RSB.imc_rest_springboot.Models.Users;
+import com.bmiservice.exception.ResourceNotFoundException;
+import com.bmiservice.model.Users;
 
 //TODO org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.imc_RSB.imc_rest_springboot.Repo.UsersRepo;
+import com.bmiservice.repository.UsersRepo;
 
 import java.util.List;
 

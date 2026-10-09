@@ -1,4 +1,4 @@
-package com.imc_RSB.imc_rest_springboot.Models;
+package com.bmiservice.model;
 
 import jakarta.persistence.*;
 
