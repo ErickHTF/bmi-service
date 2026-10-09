@@ -5,7 +5,6 @@ import com.bmiservice.model.Users;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -19,8 +18,13 @@ import com.bmiservice.service.UserService;
 @RequestMapping("/api/users")
 public class ApiController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final ImcService imcService;
+
+    public ApiController(UserService userService, ImcService imcService) {
+        this.userService = userService;
+        this.imcService = imcService;
+    }
 
     @Operation(summary = "Get All Users",
             description = "Retorna todos os usuários cadastrados.")
@@ -69,9 +73,6 @@ public class ApiController {
 
         return ResponseEntity.noContent().build();
     }
-
-    @Autowired
-    private ImcService imcService;
 
     @Operation(summary = "Calculate BMI",
             description = "Calcula um IMC.")
