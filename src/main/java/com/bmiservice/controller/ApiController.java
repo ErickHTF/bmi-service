@@ -1,6 +1,5 @@
 package com.bmiservice.controller;
 
-import com.bmiservice.dto.ImcRequest;
 import com.bmiservice.dto.UserRequest;
 import com.bmiservice.dto.UserResponse;
 import com.bmiservice.model.User;
@@ -14,7 +13,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import java.util.List;
 
-import com.bmiservice.service.ImcService;
 import com.bmiservice.service.UserService;
 
 @RestController
@@ -22,11 +20,8 @@ import com.bmiservice.service.UserService;
 public class ApiController {
 
     private final UserService userService;
-    private final ImcService imcService;
-
-    public ApiController(UserService userService, ImcService imcService) {
+    public ApiController(UserService userService) {
         this.userService = userService;
-        this.imcService = imcService;
     }
 
     @Operation(summary = "Get All Users",
@@ -75,14 +70,5 @@ public class ApiController {
         userService.delete(id);
 
         return ResponseEntity.noContent().build();
-    }
-
-    @Operation(summary = "Calculate BMI",
-            description = "Calcula um IMC.")
-    @PostMapping(value = "/calculateImc")
-    public String calculateImc(
-            @RequestBody ImcRequest request)
-    {
-        return imcService.calculateImc(request.getWeight(), request.getHeight());
     }
 }
