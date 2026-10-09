@@ -1,13 +1,13 @@
-package com.imc_RSB.imc_rest_springboot;
+package com.bmiservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ImcRestSpringbootApplication {
+public class BmiServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ImcRestSpringbootApplication.class, args);
+		SpringApplication.run(BmiServiceApplication.class, args);
 	}
 
 }

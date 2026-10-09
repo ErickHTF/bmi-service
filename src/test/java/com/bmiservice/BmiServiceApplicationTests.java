@@ -1,10 +1,10 @@
-package com.imc_RSB.imc_rest_springboot;
+package com.bmiservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ImcRestSpringbootApplicationTests {
+class BmiServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -8,11 +8,11 @@
 		<version>3.5.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.imc-RSB</groupId>
-	<artifactId>imc-rest-springboot</artifactId>
+	<groupId>com.bmiservice</groupId>
+	<artifactId>bmi-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Imc-Rest-Springboot</name>
-	<description>Praticar rest-springboot</description>
+	<name>bmi-service</name>
+	<description>REST API for user management and BMI calculation</description>
 	<url/>
 	<licenses>
 		<license/>

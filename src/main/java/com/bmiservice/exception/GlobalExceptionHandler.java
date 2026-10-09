@@ -1,4 +1,4 @@
-package com.imc_RSB.imc_rest_springboot.Exception;
+package com.bmiservice.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

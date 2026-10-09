@@ -1,4 +1,4 @@
-package com.imc_RSB.imc_rest_springboot.DTO;
+package com.bmiservice.dto;
 
 public class ImcRequest {
 

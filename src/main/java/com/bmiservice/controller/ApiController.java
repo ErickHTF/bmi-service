@@ -1,7 +1,7 @@
-package com.imc_RSB.imc_rest_springboot.Controller;
+package com.bmiservice.controller;
 
-import com.imc_RSB.imc_rest_springboot.DTO.ImcRequest;
-import com.imc_RSB.imc_rest_springboot.Models.Users;
+import com.bmiservice.dto.ImcRequest;
+import com.bmiservice.model.Users;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -12,8 +12,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import java.util.List;
 
-import com.imc_RSB.imc_rest_springboot.Service.ImcService;
-import com.imc_RSB.imc_rest_springboot.Service.UserService;
+import com.bmiservice.service.ImcService;
+import com.bmiservice.service.UserService;
 
 @RestController
 @RequestMapping("/api/users")
