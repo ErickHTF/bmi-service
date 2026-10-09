@@ -1,40 +1,25 @@
 package com.bmiservice.exception;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-public class ErrorDetails {
+import java.time.Instant;
+import java.util.Map;
 
-    private Date timestamp; // hora exata
-    private String message;
-    private String details;
+/**
+ * Error body returned by every handled exception.
+ *
+ * @param fieldErrors validation messages keyed by field name; omitted when empty
+ */
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public record ErrorDetails(
+        Instant timestamp,
+        int status,
+        String message,
+        String path,
+        Map<String, String> fieldErrors
+) {
 
-    public ErrorDetails(Date timestamp, String message, String details) {
-        this.timestamp = timestamp;
-        this.message = message;
-        this.details = details;
-    }
-
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
+    public ErrorDetails(int status, String message, String path) {
+        this(Instant.now(), status, message, path, Map.of());
     }
 }
