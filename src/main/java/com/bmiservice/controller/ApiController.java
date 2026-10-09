@@ -1,7 +1,10 @@
 package com.bmiservice.controller;
 
 import com.bmiservice.dto.ImcRequest;
-import com.bmiservice.model.Users;
+import com.bmiservice.dto.UserRequest;
+import com.bmiservice.dto.UserResponse;
+import com.bmiservice.model.User;
+import jakarta.validation.Valid;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -34,24 +37,24 @@ public class ApiController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @GetMapping(value = "/all")
-    public List<Users> getAllUsers() {
+    public List<UserResponse> getAllUsers() {
 
-        return userService.findAllUsers();
+        return userService.findAll().stream().map(UserResponse::from).toList();
     }
 
     @Operation(summary = "Get Users by ID",
             description = "Retorna um usuário pelo ID.")
     @GetMapping(value = "/{id}")
-    public Users getUsersById(@PathVariable Long id){
+    public UserResponse getUsersById(@PathVariable Long id){
 
-        return userService.findUserById(id);
+        return UserResponse.from(userService.findById(id));
     }
 
     @Operation(summary = "Create User",
             description = "Cria um novo usuário.")
     @PostMapping()
-    public  String saveUsers(@RequestBody Users users){
-        userService.saveUser(users);
+    public  String saveUsers(@Valid @RequestBody UserRequest request){
+        userService.create(request);
 
         return "User Saved!";
     }
@@ -59,17 +62,17 @@ public class ApiController {
     @Operation(summary = "Update  User",
             description = "Atualiza os dados de um usuário.")
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Users> updateUsers(@PathVariable Long id, @RequestBody Users user){
-        Users updatedUser = userService.updateUser(id, user);
+    public ResponseEntity<UserResponse> updateUsers(@PathVariable Long id, @Valid @RequestBody UserRequest request){
+        User updatedUser = userService.update(id, request);
 
-        return ResponseEntity.ok(updatedUser);
+        return ResponseEntity.ok(UserResponse.from(updatedUser));
     }
 
     @Operation(summary = "Delete User",
             description = "Remove um novo usuário.")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteUsers(@PathVariable Long id){
-        userService.deleteUser(id);
+        userService.delete(id);
 
         return ResponseEntity.noContent().build();
     }
