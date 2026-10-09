@@ -1,55 +1,48 @@
 package com.bmiservice.service;
 
+import com.bmiservice.dto.UserRequest;
 import com.bmiservice.exception.ResourceNotFoundException;
-import com.bmiservice.model.Users;
-
-//TODO org.springframework.http.ResponseEntity;
+import com.bmiservice.model.User;
+import com.bmiservice.repository.UserRepository;
 import org.springframework.stereotype.Service;
-import com.bmiservice.repository.UsersRepo;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 public class UserService {
 
-    private final UsersRepo usersRepo;
+    private final UserRepository userRepository;
 
-    public UserService(UsersRepo usersRepo) {
-        this.usersRepo = usersRepo;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
-    public List<Users> findAllUsers() {
-        return usersRepo.findAll();
+    @Transactional(readOnly = true)
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
-    public Users findUserById(Long id){
-        return usersRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found on: " + id));
+    @Transactional(readOnly = true)
+    public User findById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
     }
 
-    public Users saveUser(Users users){
-        return usersRepo.save(users);
+    @Transactional
+    public User create(UserRequest request) {
+        return userRepository.save(request.toEntity());
     }
 
-    public Users updateUser(Long id, Users users){
-        // Busca primeiro para garantir que tem o que ser atualizado
-        Users updateUser = usersRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found on: " + id));
-
-        updateUser.setName(users.getName());
-        updateUser.setAge(users.getAge());
-        updateUser.setWeight(users.getWeight());
-        updateUser.setHeight(users.getHeight());
-
-        return usersRepo.save(updateUser);
+    @Transactional
+    public User update(Long id, UserRequest request) {
+        User user = findById(id);
+        user.update(request.name().strip(), request.age(), request.weight(), request.height());
+        return user;
     }
 
-    public void deleteUser(Long id) {
-        // Busca primeiro para garantir que tem o que ser deletado
-        Users user = usersRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found on: " + id));
-
-        usersRepo.delete(user);
+    @Transactional
+    public void delete(Long id) {
+        userRepository.delete(findById(id));
     }
 }
-
