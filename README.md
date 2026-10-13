@@ -6,6 +6,7 @@ from weight and height.
 **Status:** Educational backend project.
 
 [![CI](https://github.com/ErickHTF/bmi-service/actions/workflows/ci.yml/badge.svg)](https://github.com/ErickHTF/bmi-service/actions/workflows/ci.yml)
+![Java 17](https://img.shields.io/badge/Java-17-ED8B00?logo=openjdk&logoColor=white) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3-6DB33F?logo=springboot&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-13-4169E1?logo=postgresql&logoColor=white)
 
 [Run locally](#run-locally) · [Development guide](docs/development.md) ·
 [Architecture](docs/architecture.md) · [API reference](docs/api.md)
